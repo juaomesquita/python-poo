@@ -1,4 +1,7 @@
 from conta import *
+from cliente import *
 
-conta = Conta(123, "Nico", 3500, 5000)
+cliente = Cliente('João', 'Mesquita', 1997)
+conta = Conta(123, cliente, 3500, 5000)
 
+print(conta)

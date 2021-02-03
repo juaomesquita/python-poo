@@ -1,18 +1,18 @@
 class Conta:
-    def __init__(self, conta, titular, saldo, limite):
+    def __init__(self, conta, cliente, saldo, limite):
         self.__conta = conta
-        self.__titular = titular
+        self.__cliente = cliente
         self.__saldo = saldo
         self.__limite = limite
 
     def extrato(self):
-        print("Saldo do cliente {} é: R${:.2f}".format(self.__titular, self.__saldo))
+        print("Saldo do cliente {} é: R${:.2f}".format(self.cliente, self.saldo))
 
     def deposisita(self, valor):
         self.__saldo += valor
 
     def __pode_sacar(self, valor_a_sacar):
-        valor_disponivel_a_sacar = self.__saldo + self.__limite
+        valor_disponivel_a_sacar = self.saldo + self.limite
         return valor_a_sacar <= valor_disponivel_a_sacar
 
     def saca(self, valor):
@@ -36,12 +36,12 @@ class Conta:
         self.__conta = conta
 
     @property
-    def titular(self):
-        return self.__titular.title()
+    def cliente(self):
+        return self.__cliente
 
-    @titular.setter
-    def titular(self, titular):
-        self.__titular = titular
+    @cliente.setter
+    def titular(self, cliente):
+        self.__cliente = cliente
 
     @property
     def limite(self):
@@ -51,6 +51,11 @@ class Conta:
     def limite(self, limite):
         self.__limite = limite
 
+    @property
+    def saldo(self):
+        return self.__saldo
+
+
     @staticmethod
     def codigo_banco():
         return "001"
@@ -58,3 +63,6 @@ class Conta:
     @staticmethod
     def codigos_bancos():
         return {'BB':'001', 'Caixa':'104', 'Bradesco':'237'}
+
+    def __str__(self):
+        return f"Conta: {self.conta}\n{self.cliente}\nSaldo: R${self.saldo:.2f}\nLimite: {self.limite:.2f}"
