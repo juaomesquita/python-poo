@@ -11,8 +11,12 @@ class Conta:
     def deposisita(self, valor):
         self.__saldo += valor
 
+    def pode_sacar(self, valor_a_sacar):
+        valor_disponivel_a_sacar = self.__saldo + self.__limite
+        return valor_a_sacar <= valor_disponivel_a_sacar
+
     def saca(self, valor):
-        if valor <= (self.__saldo + self.__limite):
+        if self.pode_sacar(valor):
             self.__saldo -= valor
         else:
             print("O valor R${:.2f} passou o limite.".format(valor))
