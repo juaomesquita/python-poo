@@ -12,7 +12,10 @@ class Conta:
         self.__saldo += valor
 
     def saca(self, valor):
-        self.__saldo -= valor
+        if valor <= (self.__saldo + self.__limite):
+            self.__saldo -= valor
+        else:
+            print("O valor R${:.2f} passou o limite.".format(valor))
 
     def transfere(self, conta, valor):
         self.saca(valor)
@@ -20,20 +23,26 @@ class Conta:
 
     #conta titular saldo limite
 
-    def get_conta(self):
+    @property
+    def conta(self):
         return self.__conta
 
-    def set_conta(self, conta):
+    @conta.setter
+    def conta(self, conta):
         self.__conta = conta
 
-    def get_titular(self):
-        return self.__titular
+    @property
+    def titular(self):
+        return self.__titular.title()
 
-    def set_titular(self, titular):
+    @titular.setter
+    def titular(self, titular):
         self.__titular = titular
 
-    def get_limite(self):
+    @property
+    def limite(self):
         return self.__limite
 
-    def set_limite(self, limite):
+    @limite.setter
+    def limite(self, limite):
         self.__limite = limite
